@@ -48,11 +48,10 @@ Docker layer caching is configured with the GitHub Actions cache backend.
 Unchanged layers such as the system packages and NPM dependencies are reused during later builds.
 
 * Before caching: **9 seconds**
-* After caching: **14 seconds**
+* After caching: **8 seconds**
 
 https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33160620281
 
-https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33162261688
+https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33162736545/job/98820829703
 
-The cached run was slower because this is a very small image and importing, extracting and exporting the cache added more overhead than rebuilding the layers. The logs still confirm that the unchanged layers were marked as `CACHED`.
 
