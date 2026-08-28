@@ -41,19 +41,18 @@ Pushing the Git tag `v1.0.0` generates the Docker image tag `1.0.0`.
 
 https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33160833549
 
-## Pull and Run the Image
+## Task 3: Docker Layer Cache
 
-```bash
-docker pull ghcr.io/tomsonne/holbertonschool-continuous_integrations:latest
-docker run -p 3000:3000 ghcr.io/tomsonne/holbertonschool-continuous_integrations:latest
-```
+Docker layer caching is configured with the GitHub Actions cache backend.
 
-The application is then available at:
+Unchanged layers such as the system packages and NPM dependencies are reused during later builds.
 
-```text
-http://localhost:3000
-http://localhost:3000/health
-```
+* Before caching: **9 seconds**
+* After caching: **14 seconds**
 
+https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33160620281
 
+https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33162261688
+
+The cached run was slower because this is a very small image and importing, extracting and exporting the cache added more overhead than rebuilding the layers. The logs still confirm that the unchanged layers were marked as `CACHED`.
 
