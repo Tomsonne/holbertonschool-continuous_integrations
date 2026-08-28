@@ -53,3 +53,17 @@ Unchanged layers such as the system packages and NPM dependencies are reused dur
 https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33170837986/job/98847319830
 
 https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33170936369/job/98847646591
+
+## Task 4: Scan Before You Ship
+
+The Docker image is scanned with Trivy before being published to GHCR.
+
+The pipeline blocks publication when Trivy detects a vulnerability with the `CRITICAL` severity. Trivy returns exit code `1`, causing the workflow to fail and skipping the image push step.
+
+https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33172814138
+
+https://github.com/Tomsonne/holbertonschool-continuous_integrations/actions/runs/33173289773
+
+The failed run detected `CVE-2026-59873` in the `tar` package and correctly prevented the image from being published.
+
+A temporary exception is documented in `.trivyignore`. This exception allows the successful demonstration run, but it does not fix the vulnerability and should be removed when the dependency is updated.
